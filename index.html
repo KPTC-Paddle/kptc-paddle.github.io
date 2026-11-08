@@ -43,7 +43,9 @@ button{font:inherit;font-weight:600;padding:10px 18px;border-radius:999px;border
   // Last visit's copy shows at once; the app then fetches what changed. A copy that never started is skipped.
   if (tpl && data && !get("pending")) {
     set("pending", "1");
-    show(tpl, data, true);
+    // wait until this page has finished loading, so the app replaces it instead of being added below it
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { show(tpl, data, true); });
+    else show(tpl, data, true);
     return;
   }
   drop("pending");
