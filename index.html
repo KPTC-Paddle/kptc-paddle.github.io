@@ -38,7 +38,7 @@ button{font:inherit;font-weight:600;padding:10px 18px;border-radius:999px;border
     document.getElementById("box").innerHTML = "<div>Could not reach the league app. Check your connection.</div>" +
       "<button onclick=\"location.reload()\">Try again</button>";
   }
-  var court = /[?&]court=/.test(q);
+  var court = /[?&](court|claim)=/.test(q);
   var tpl = get("tpl"), ver = get("ver") || "", data = court ? null : get("data:" + q);
   // Last visit's copy shows at once; the app then fetches what changed. A copy that never started is skipped.
   if (tpl && data && !get("pending")) {
